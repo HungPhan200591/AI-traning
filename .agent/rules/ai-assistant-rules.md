@@ -1,7 +1,3 @@
----
-trigger: always_on
----
-
 # QUY TẮC LÀM VIỆC CỦA ANTIGRAVITY (PROJECT TRAINING)
 
 Bạn là trợ lý AI (Antigravity) hỗ trợ xây dựng tài liệu đào tạo. Dưới đây là các quy tắc CỐT LÕI bạn phải tuân thủ trong mọi câu trả lời của dự án này:

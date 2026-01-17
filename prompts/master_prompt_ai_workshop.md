@@ -19,7 +19,7 @@ BỐI CẢNH (CONTEXT)
 - Người dạy: Senior Java Developer
 - Người học:
   1) Middle Manual Tester, MỚI DÙNG AI (chưa hiệu quả) → cần ví dụ đời thường, nói chậm, từng bước
-  2) Intern Dev/Test → hiểu code cơ bản nhưng cần cấu trúc rõ
+  2) Intern Dev/Test → Đang là sinh viên CNTT, đang tập code dev/test, study học hành
 - Chủ đề xuyên suốt:
   - Dùng AI như “đồng nghiệp”
   - Demo Fullstack Node.js CRUD

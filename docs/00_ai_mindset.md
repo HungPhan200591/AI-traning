@@ -52,42 +52,55 @@ Khi dùng AI, bạn **luôn giữ vai trò “Controller” (người kiểm so�
 ### 1️⃣ Context (Luật Bối cảnh)
 AI **không biết hệ thống của bạn**.
 → Phải nói rõ: đang làm gì, cho ai, trong hoàn cảnh nào (**Project & User Context**).
-→ **Ví dụ:**
-*   ⚠️ **Weak**: "Viết API lấy danh sách User." (AI sẽ hỏi: Ngôn ngữ gì? DB gì?)
-*   ✅ **Standard**: "Viết API `GET /users` bằng **Java Spring Boot**, lấy dữ liệu từ **PostgreSQL**, trả về JSON."
+
+*   **Ví dụ 1 (Tester/Đời thường):**
+    *   ⚠️ **Weak**: "Lên kế hoạch đi Đà Lạt cho 4 người." 
+    *   ✅ **Strong**: "Lên lịch trình đi **Đà Lạt 3 ngày 2 đêm**, cho **nhóm bạn 4 người**, ngân sách **tiết kiệm**, thích **săn mây và chụp ảnh**."
+*   **Ví dụ 2 (Sinh viên/Code):**
+    *   ⚠️ **Weak**: "Giải thích thuật toán Bubble Sort."
+    *   ✅ **Strong**: "Giải thích thuật toán Bubble Sort bằng **Java**, dùng ví dụ **dãy số [5, 1, 4, 2]**, minh họa từng bước tráo đổi."
 
 ### 2️⃣ Constraints (Luật Ràng buộc)
 Không nói ràng buộc → AI tự chọn theo ý nó (**Randomness**).
 → Luôn nói rõ: **không dùng gì, phải theo chuẩn gì (Coding Standards)**.
-→ **Ví dụ:**
-*   ⚠️ **Weak**: "Viết test case cho chức năng Đăng ký." (AI viết văn xuôi hoặc bảng tuỳ ý)
-*   ✅ **Standard**: "Viết Test Case chức năng Đăng ký, format **bảng Excel** (gồm cột: ID, Description, Steps, Expected), cover cả **trường hợp validation**."
+
+*   **Ví dụ 1 (Tester - Công việc):**
+    *   ⚠️ **Weak**: "Viết bug report cho lỗi đăng nhập."
+    *   ✅ **Strong**: "Viết Bug Report lỗi đăng nhập, format chuẩn **Jira** (Summary, Steps, Actual, Expected), dùng **tiếng Anh**, Severity **High**."
+*   **Ví dụ 2 (Sinh viên - Bài tập):**
+    *   ⚠️ **Weak**: "Viết hàm tính giai thừa."
+    *   ✅ **Strong**: "Viết hàm tính giai thừa bằng **C++**, dùng **Đệ quy (Recursion)**, KHÔNG dùng vòng lặp `for/while`."
 
 ### 3️⃣ Verification (Luật Kiểm tra)
-AI **không chạy code thay bạn**.
-→ Mọi thứ phải **chạy được trên máy bạn** (**Local Environment**).
+AI **không chạy code thay bạn**. Bạn phải chạy trên **Local Environment**.
 → Nguyên tắc: **Trust but Verify**.
-→ **Ví dụ:**
-*   AI gợi ý dùng `String.isBlank()`.
-*   Project bạn chạy **Java 8** (chưa có hàm này) → Build lỗi ngay. Hãy kiểm tra version trước khi copy.
+
+*   **Ví dụ 1 (Tester):**
+    *   AI gợi ý: "Dùng tool `Selenium IDE` record màn hình."
+    *   Thực tế: Công ty cấm cài extension lạ -> **Verify**: Check policy công ty trước khi tin.
+*   **Ví dụ 2 (Sinh viên):**
+    *   AI giải bài toán xác suất thống kê ra kết quả `0.2`.
+    *   **Verify**: Tính tay lại công thức xem logic đúng không, đừng chép ngay vào bài thi.
 
 ### 4️⃣ Data (Luật Dữ liệu)
 Khi có lỗi (**Bug/Error**), **đưa dữ liệu thật**:
-*   Logs
-*   Stacktrace
-*   Code snippet
-*   Screenshot
 
-→ **Ví dụ:**
-*   ⚠️ **Weak**: "Code lỗi 500 rồi em ơi." (AI chịu, không đoán được)
-*   ✅ **Standard**: "API trả về 500. Log server báo: `java.lang.NullPointerException at com.example.UserService.getUser(UserService.java:25)`..."
+*   **Ví dụ 1 (Tester):**
+    *   ⚠️ **Weak**: "Nút Submit không bấm được."
+    *   ✅ **Strong**: "Nút Submit bị xám (disable). Inspect HTML thấy thuộc tính `disabled="true"`. Screenshot đính kèm..."
+*   **Ví dụ 2 (Sinh viên):**
+    *   ⚠️ **Weak**: "Bài code này chạy ra sai."
+    *   ✅ **Strong**: "Input nhập `n = 5` thì đúng, nhưng `n = 20` thì ra số âm (sai). Nghi ngờ tràn số kiểu `int`."
 
 ### 5️⃣ Short Loop (Luật Vòng lặp ngắn)
-Không nói chuyện dài dòng với AI.
-→ **Ask → Run → Fix → Ask again**.
-→ **Ví dụ:**
-*   ⚠️ **Weak**: "Viết full một trang dashboard quản lý có biểu đồ, bảng dữ liệu, filter, export excel." (Quá nhiều, code sẽ bị cắt giữa chừng).
-*   ✅ **Standard**: "Viết Component **Bảng dữ liệu (Table)** hiển thị user trước." (Xong mới làm tiếp Filter, Chart).
+Không nói chuyện dài dòng. **Ask → Run → Fix → Ask again**.
+
+*   **Ví dụ 1 (Tester):**
+    *   ⚠️ **Weak**: "Viết 100 test case cho cả website bán hàng." (AI sẽ viết sơ sài, lặp lại).
+    *   ✅ **Strong**: "Viết test case cho **Màn hình Đăng nhập** trước. Xong màn này mới qua màn Giỏ hàng."
+*   **Ví dụ 2 (Sinh viên):**
+    *   ⚠️ **Weak**: "Code cả game Rắn săn mồi hoàn chỉnh."
+    *   ✅ **Strong**: "Code chức năng **vẽ con rắn di chuyển** trên màn hình đen trước." (Chưa cần ăn mồi, chưa cần tính điểm).
 
 ---
 
@@ -96,47 +109,46 @@ Không nói chuyện dài dòng với AI.
 ```
 1. Define Request (Nói rõ yêu cầu)
 2. AI blocks Draft (AI tạo bản nháp)
-3. User Verify (Bạn chạy thử)
+3. User Verify (Bạn chạy thử/đọc kỹ)
 4. Error? -> Feed Logs to AI (Có lỗi -> đưa lỗi cho AI)
 5. AI Explain/Fix (AI giải thích / đề xuất sửa)
 6. Peer Review & Retry (Bạn sửa và chạy lại)
 ```
 
-### Example Scenario (Ví dụ: Viết Unit Test):
-*   **Bước 1**: "Viết Unit Test (JUnit 5) cho hàm `calculateTotal(Order order)`."
-*   **Bước 2**: AI trả về code test case cơ bản (Happy path).
-*   **Bước 3**: Bạn chạy test -> Thấy lỗi đỏ (Red) ở case "Order null".
-*   **Bước 4**: Copy lỗi JUnit: `java.lang.NullPointerException...` gửi AI.
-*   **Bước 5**: AI sửa code: thêm check `if (order == null)` và throw Exception hợp lý.
-*   **Bước 6**: Bạn chạy lại -> Test xanh (Green).
-
-> **Lỗi không phải thất bại – lỗi là Input information để sửa.**
+### Example Scenario (Ví dụ: Testing):
+*   **Bước 1**: "Viết Checklist test cho màn hình Đổi Mật Khẩu."
+*   **Bước 2**: AI liệt kê 10 dòng (Pass/Fail).
+*   **Bước 3 (Verify)**: Bạn đọc thấy thiếu trường hợp "Mật khẩu mới trùng mật khẩu cũ".
+*   **Bước 4 (Feedback)**: "Bổ sung case: mật khẩu mới giống cũ thì phải chặn."
+*   **Bước 5**: AI cập nhật checklist.
+*   **Bước 6**: Bạn chốt checklist và bắt đầu test.
 
 ---
 
 ## 6. Prompting (Hỏi AI thế nào cho đúng?)
 
 ### ⚠️ Weak Prompt (Cách hỏi chưa nét)
-
-> “Tạo giúp tôi class Entity cho bảng Product nhé.”
-→ *(Thiếu field, thiếu công nghệ, AI sẽ tạo đại một class Java POJO thường hoặc code sai chuẩn)*
+> “Viết email xin nghỉ phép.”
+→ *(Thiếu lý do, số ngày, gửi ai, thái độ nào)*
 
 ### ✅ Strong Prompt (Cách hỏi đầy đủ)
 
 **Template:**
-> **Context**: Tôi đang làm [Công việc]...
+> **Context**: Tôi là [Vai trò], đang làm [Việc gì]...
 > **Goal**: Mục tiêu là [Kết quả]...
-> **Constraints**: Ràng buộc [Công nghệ/Quy tắc]...
-> **Error**: (Nếu có lỗi) Lỗi gặp phải [Logs/Image]...
-> **Expectation**: (Tuỳ chọn) Format mong muốn
+> **Constraints**: Ràng buộc [Quy tắc/Format]...
+> **Info/Error**: Dữ liệu đầu vào hoặc Lỗi...
 
-**Ví dụ:**
-> **Context**: Project Spring Boot bán hàng.
-> **Goal**: Tạo Entity mapping với bảng `products`.
-> **Constraints**: Dùng **JPA (Hibernate)**, **Lombok (@Data)**. Field `price` dùng `BigDecimal`, bắt buộc `NOT NULL`.
-> **Expectation**: Trả về code Java class hoàn chỉnh.
+**Ví dụ 1 (Dành cho Tester - Viết Email):**
+> **Context**: Là Manual Tester, cần gửi email cho Dev Team.
+> **Goal**: Báo cáo việc bug Critical ở Production đã được fix xong.
+> **Constraints**: Giọng văn chuyên nghiệp, ngắn gọn, CC cho Project Manager.
+> **Info**: Bug ID là #JIRA-123.
 
-> **Clear Input → Better Output.**
+**Ví dụ 2 (Dành cho Sinh viên - Học code):**
+> **Context**: Đang học cấu trúc dữ liệu Stack/Queue.
+> **Goal**: Hiểu sự khác nhau giữa Stack và Queue.
+> **Constraints**: Giải thích bằng hình ảnh tượng hình (ví dụ đời sống), không dùng code phức tạp.
 
 ---
 
@@ -164,17 +176,17 @@ Hầu hết prompt yếu đến từ **3 tư duy sai lầm** (Mindset Traps):
 ## 8. Common Mistakes (Những sai lầm phổ biến)
 
 * ❌ **Vague Prompt (Hỏi chung chung)**
-    *   *Weak*: "Viết test login."
-    *   *Fix*: "Viết 5 test cases cho Login: 1 đúng, 1 sai pass, 1 user không tồn tại, 1 để trống, 1 SQL Injection."
-* ❌ **Blind Trust (Tin kết quả AI mà không chạy thử)**
-    *   *Ví dụ*: AI import thư viện lạ (`import com.google.common...`) mà file `pom.xml` chưa khai báo dependency.
-    *   *Fix*: Check import và file cấu hình dependencies.
-* ❌ **No Logs (Không đưa log khi debug)**
-    *   *Weak*: "Nó không chạy được."
-    *   *Fix*: "Console báo lỗi dòng 15: `ArrayIndexOutOfBoundsException: Index 5 out of bounds`."
-* ❌ **Overloaded Request (Hỏi nhiều việc trong 1 câu)**
-    *   *Weak*: "Viết automation script login xong rồi tìm kiếm sản phẩm rồi thêm vào giỏ hàng."
-    *   *Fix*: "Viết script **Login** chạy ổn đã." (Rồi mới làm tiếp script Tìm kiếm).
+    *   *Tester*: "Test trang này đi." → *Fix*: "Test **Giao diện (UI)** trang Home trên **Mobile**."
+    *   *Student*: "Giảng bài Pointer." → *Fix*: "Giải thích khái niệm **Pointer trong C** qua ví dụ swap biến."
+* ❌ **Blind Trust (Tin kết quả AI mà không kiểm tra)**
+    *   *Tester*: AI bảo "Câu SQL này đúng rồi". → *Fix*: Chạy thử trong Database xem có ra kết quả thật không.
+    *   *Student*: AI viết code dùng thư viện lạ. → *Fix*: Kiểm tra xem mình đã học/được dùng thư viện đó chưa.
+* ❌ **No Logs (Giấu dữ liệu lỗi)**
+    *   *Tester*: "Login không được." → *Fix*: "Bấm Login thì loading mãi, F12 thấy lỗi 504 Gateway Time-out."
+    *   *Student*: "Bài không chạy." → *Fix*: "Console báo lỗi dòng 10: `IndexOutOfBounds`."
+* ❌ **Overloaded (Nhồi nhét quá nhiều việc)**
+    *   *Tester*: "Viết full kịch bản test cho cả dự án." → *Fix*: "Viết kịch bản test cho **luồng Quên mật khẩu**."
+    *   *Student*: "Làm game cờ vua." → *Fix*: "Làm **bàn cờ và quân Tốt** di chuyển được trước."
 
 → **Chỉ cần sửa 4 lỗi này là dùng AI hiệu quả hơn 80%.**
 

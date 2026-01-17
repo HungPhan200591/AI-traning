@@ -24,7 +24,7 @@ Quy tắc lớp học: *“Không hiểu thì đưa log / screenshot / snippet c
 | Thời gian | Phase   | Mục tiêu                  | Tôi cần nói gì                         | Học viên làm gì                          | Checkpoint                  |
 | --------- | ------- | ------------------------- | -------------------------------------- | ---------------------------------------- | --------------------------- |
 | 00–05     | Kickoff | Chốt mục tiêu + luật chơi | “AI là đồng nghiệp, không phải thần”   | Mở AI tool + tạo note                    | Ai cũng sẵn tool + note     |
-| 05–20     | PHẦN 0  | Gỡ sợ code                | “Hôm nay học ra lệnh”                  | Viết 1 việc họ hay làm                   | Nói lại “AI = intern”       |
+| 05–20     | PHẦN 0  | Chuẩn hóa Mindset         | “Hôm nay học ra lệnh”                  | Viết 1 việc họ hay làm                   | Nói lại “AI = intern”       |
 | 20–45     | PHẦN 1  | AI map + AI vs Agent      | “Tool vs Agent khác gì?”               | Chọn 5 tình huống → tool/agent           | Phân loại đúng 4/5          |
 | 45–75     | PHẦN 2  | Master prompting          | “Context/Constraint/Output”            | Viết prompt tệ→sửa prompt tốt            | Thấy output khác rõ         |
 | 75–110    | PHẦN 3  | Demo CRUD Node            | “Vibe coding: đọc-chạy-sửa”            | Copy project → chạy app → thử giá âm     | App chạy + bug reproduce    |
@@ -36,16 +36,18 @@ Quy tắc lớp học: *“Không hiểu thì đưa log / screenshot / snippet c
 
 ## 3️⃣ GIÁO ÁN CHI TIẾT THEO TỪNG PHASE
 
-# PHẦN 0 – AI MINDSET CHO NGƯỜI SỢ CODE (15’)
+# PHẦN 0 – AI MINDSET CHO NGƯỜI MỚI (CHUẨN HÓA CÁCH DÙNG) (15’)
 
 ### A. Mục tiêu giảng dạy
 
-Học viên hiểu: **mình không học code**, mình học **cách giao việc cho AI** và **cách kiểm tra kết quả**.
+Học viên hiểu: **chuyển từ "hỏi chơi" sang "giao việc"**, biết **cách ra lệnh cho AI** và **cách kiểm tra kết quả**.
 
 ### B. Knowledge notes cho GIẢNG VIÊN
 
-* Nỗi sợ code thường là sợ: *gõ sai / hỏng máy / không hiểu lỗi*.
-  → Giảm sợ bằng “copy–paste, chạy được là thắng”.
+* Sai lầm thường gặp của người mới:
+  * Tin tưởng tuyệt đối (AI nói gì cũng tin).
+  * Hỏi chung chung như Google ("Làm sao test cái này?").
+  * Dùng sai tool (lấy AI tạo ảnh đi hỏi code).
 * Định vị AI: **intern** (làm nhanh, cần review).
   Review ở đây = chạy thử + check output.
 * Quy ước: “Không đánh nhau với AI bằng cảm xúc” → **đưa dữ liệu** (log, file, yêu cầu cụ thể).

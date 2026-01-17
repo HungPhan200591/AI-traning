@@ -18,7 +18,7 @@ BỐI CẢNH (CONTEXT)
 ====================
 - Người dạy: Senior Java Developer
 - Người học:
-  1) Middle Manual Tester, SỢ CODE → cần ví dụ đời thường, nói chậm, từng bước
+  1) Middle Manual Tester, MỚI DÙNG AI (chưa hiệu quả) → cần ví dụ đời thường, nói chậm, từng bước
   2) Intern Dev/Test → hiểu code cơ bản nhưng cần cấu trúc rõ
 - Chủ đề xuyên suốt:
   - Dùng AI như “đồng nghiệp”
@@ -34,7 +34,7 @@ CẤU TRÚC WORKSHOP (BẮT BUỘC)
 ====================
 Workshop phải chia theo PHASE sau (đặt đúng tên):
 
-PHẦN 0 – AI MINDSET CHO NGƯỜI SỢ CODE (15’)
+PHẦN 0 – AI MINDSET CHO NGƯỜI MỚI (CHUẨN HÓA CÁCH DÙNG) (15’)
 PHẦN 1 – AI MAP: AI là gì, dùng khi nào, AI vs AI Agent
 PHẦN 2 – MASTER PROMPTING (cách ra lệnh cho AI làm việc)
 PHẦN 3 – DEMO: Vibe Coding CRUD Node.js (cố tình có bug giá âm)

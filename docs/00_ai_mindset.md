@@ -140,7 +140,28 @@ Không nói chuyện dài dòng với AI.
 
 ---
 
-## 7. Common Mistakes (Những sai lầm phổ biến)
+## 7. Root Cause of Weak Prompts (Tại sao bạn Prompt yếu?)
+
+Hầu hết prompt yếu đến từ **3 tư duy sai lầm** (Mindset Traps):
+
+### 1️⃣ "AI tự hiểu ý tôi" (Assumed Context)
+*   **Suy nghĩ cũ**: "Nó thông minh mà, nói sơ sơ là được."
+*   **Thực tế**: AI không có context trong đầu bạn. Nó giống một nhân viên mới tinh ngày đầu đi làm.
+*   **Fix Mindset**: Hãy coi AI là **Junior mới vào team**, bạn cần hướng dẫn chi tiết (Onboarding) thì nó mới làm đúng.
+
+### 2️⃣ "Lười viết dài" (Lazy Prompting)
+*   **Suy nghĩ cũ**: "Gõ dài mệt quá, hỏi ngắn cho nhanh."
+*   **Thực tế**: Hỏi ngắn 5 giây → AI code sai → Sửa 30 phút.
+*   **Fix Mindset**: **Slow down to Speed up**. Tốn 2 phút viết prompt chuẩn để tiết kiệm 30 phút debug.
+
+### 3️⃣ "Sợ AI thấy mình dốt" (Fear of over-explaining)
+*   **Suy nghĩ cũ**: "Nói kỹ quá có vẻ thừa thãi."
+*   **Thực tế**: AI không biết đánh giá, nó chỉ cần thông tin.
+*   **Fix Mindset**: **Over-communicate** (giao tiếp thừa) luôn tốt hơn thiếu. Thà dư thừa constraint còn hơn để AI "sáng tạo" lung tung.
+
+---
+
+## 8. Common Mistakes (Những sai lầm phổ biến)
 
 * ❌ **Vague Prompt (Hỏi chung chung)**
     *   *Weak*: "Viết test login."
@@ -159,7 +180,7 @@ Không nói chuyện dài dòng với AI.
 
 ---
 
-## 8. Checklist (Tự kiểm tra)
+## 9. Checklist (Tự kiểm tra)
 
 Bạn đã sẵn sàng nếu:
 

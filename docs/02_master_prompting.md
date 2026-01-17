@@ -248,65 +248,102 @@ AI không biết bạn là ai, đang làm dự án gì. Hãy cung cấp bối c�
 ## 4. Chiến lược "Xây Prompt từ ý tưởng mơ hồ" (Prompt Refining Strategy)
 
 Thực tế: Bạn thường **không biết mình muốn gì** ngay từ đầu.
-Ví dụ: *"Muốn làm app CRUD Product"* -> Nhưng chưa biết Product có trường gì, dùng công nghệ nào.
+Ví dụ: *"Muốn làm app CRUD Product"* -> Nhưng chưa biết Product có trường gì, dùng công nghệ nào, giao diện ra sao...
 
-**Quy trình 3 bước để "vẽ" ra Prompt chuẩn:**
+**Quy trình 3 bước để "vẽ" ra Prompt chuẩn (Tư duy Code):**
 
 ### Bước 1: Brainstorming (Hỏi ngược lại AI)
-Đừng bắt AI làm ngay. Hãy bảo nó **đóng vai Consultant (Tư vấn viên)** để khai thác thông tin từ bạn.
+Đừng bắt AI code ngay. Hãy bảo nó **đóng vai Consultant (Tư vấn viên)** để khai thác thông tin từ bạn.
 
 > *Prompt 1 (P1)*: "Tôi muốn làm một app quản lý Sản phẩm (CRUD) nhưng chưa rõ cần những trường thông tin gì và nên dùng công nghệ nào cho người mới. Hãy đóng vai Tech Lead, gợi ý cho tôi các trường Product cơ bản và Tech stack đơn giản nhất."
 
--> AI sẽ trả lời: Product (Name, Price, Category...), Stack (NodeJS + EJS cho dễ).
+-> AI sẽ trả lời: Product (Name, Price, Category...), Stack (NodeJS + EJS hoặc HTML/API).
 
-### Bước 2: Finalize Requirements (Chốt đơn)
-Từ gợi ý của bước 1, bạn chọn ra những gì mình thích.
+### Bước 2: Finalize Requirements & Plan (Lên kế hoạch - Cấm Code)
+Từ gợi ý của bước 1, bạn chốt công nghệ nhưng **phải chặn không cho nó code ngay** (để tránh nó viết thiếu/sai). Yêu cầu nó ra **Cấu trúc dự án** trước.
 
-> *Prompt 2 (P2)*: "OK, chốt dùng NodeJS + Express + HTML đơn giản (không React). Product gồm: Id, Name, Price, Description, ImageURL. Lưu dữ liệu vào file JSON (không cần Database cho nhẹ)."
+> *Prompt 2 (P2 - Planning)*: "OK, chốt dùng NodeJS + Express + PostgreSQL (chạy Docker). Product gồm: Id, Name, Price.
+> Hãy **Lên danh sách các việc cần làm** và **Cấu trúc thư mục** dự án.
+> **LƯU Ý: CHƯA ĐƯỢC VIẾT CODE LÚC NÀY. Chỉ đưa Plan thôi.**"
 
-### Bước 3: Generate Execution Prompt (Ra lệnh thực thi)
-Gộp thông tin bước 2 vào công thức **C.G.C.F** để AI gen code.
+### Bước 3: Generate Execution Prompt (Meta-Prompting - Nhờ AI viết hộ)
+Thay vì tự nghĩ câu lệnh dài dòng, hãy sai vặt AI viết Prompt cho mình.
+
+> *Prompt 3 (P3)*: "Tuyệt vời. Giờ hãy viết cho tôi 1 Prompt thật chi tiết theo công thức **C.G.C.F** để tôi yêu cầu AI khác (hoặc chính bạn) bắt tay vào code phần Backend trước. Hãy nhớ đưa đầy đủ các constraints về Database Postgres và Docker vào prompt đó."
+
+### Bước 4: Execute (Thực thi)
+Copy cái Prompt "xịn" mà AI vừa đưa cho bạn -> Paste vào khung chat để nó làm việc.
 
 ---
 
-## 5. Step-by-Step Example (Tạo App CRUD Fullstack)
+## 5. Step-by-Step Example (Tạo App Node.js CRUD Product)
 
-Dưới đây là ví dụ minh họa cách áp dụng chiến lược trên.
+Dưới đây là ví dụ thực tế cách dùng nhiều Prompt phối hợp để làm một App Fullstack (Backend + Frontend) từ con số 0.
 
 ### Situation (Tình huống)
-Vợ/Em gái muốn tạo 1 trang web quản lý Danh sách Khách hàng (CRUD), nhưng không rành công nghệ.
+Muốn làm web quản lý Sản phẩm, có server Node.js đàng hoàng, nhưng chưa có gì trong tay.
 
-### Phase 1: Mơ hồ (Vague)
-> **User**: "Làm cho cái web quản lý khách hàng đi."
-> **AI (Sẽ làm bừa)**: Tự chọn React, MongoDB, Code phức tạp -> User không chạy được.
+### Turn 1: Tư vấn (Consulting)
+> **User**: "Tôi muốn học làm web App quản lý Sản phẩm (Product CRUD). Gợi ý cho tôi các trường dữ liệu cần thiết của 1 sản phẩm bán quần áo? Và tech stack nào dễ nhất để tôi chạy được trên máy cá nhân?"
+>
+> **AI Reply**: "Gợi ý trường: Tên, Giá, Size, Màu, Tồn kho. Stack dễ nhất: Node.js + Express (làm API Backend) và HTML thuần + Bootstrap (làm Frontend gọi API). Cách này giúp bạn hiểu rõ mô hình Client-Server hiện đại."
 
-### Phase 2: Tư vấn (Consulting)
-> **User**: "Tôi muốn làm web quản lý khách hàng cho người mới học. Hãy gợi ý xem khách hàng cần thông tin gì? Và nên code bằng ngôn ngữ gì dễ nhất (tôi biết chút HTML/JS)?"
-> **AI**: "Nên dùng HTML + JS thuần + LocalStorage (lưu trình duyệt). Khách hàng cần: Tên, SĐT, Email."
+### Turn 2: Lên Plan & Cấu trúc (Planning)
+> **User (Prompt P2)**: "OK, chốt phương án đó.
+> 1. Hãy đưa ra **Cấu trúc thư mục dự án chuẩn** theo mô hình Layered Architecture (Controller, Service, Route, Model) để dễ mở rộng, KHÔNG viết tất cả vào 1 file `server.js`.
+> 2. Cần có folder `config` cho DB, `middleware` để xử lý lỗi tập trung.
+> 3. Tạo file `docker-compose.yml` cho Postgres.
+> **Constraint**: CHƯA viết code vội. Cần file tree trước."
+>
+> **AI Reply**: Đưa ra cấu trúc chuẩn:
+> *   `src/config/database.js`
+> *   `src/controllers/product.controller.js`
+> *   `src/routes/product.routes.js`
+> *   `src/models/product.model.js`
+> *   `src/middlewares/error.middleware.js`
+> *   `server.js` (App entry)
+> *   `docker-compose.yml`
 
-### Phase 3: Chốt & Prompt Xịn (Final Prompt)
-
-Đây là Prompt bạn sẽ **Copy & Paste** vào Cursor/Antigravity:
+### Turn 3: Thực thi Backend (Execution - CGCF)
+Bây giờ mới bắt đầu code. Copy prompt này vào:
 
 ```markdown
 # Context
-Tôi là người mới học code. Tôi muốn tạo một ứng dụng web Quản lý Khách hàng (CRUD Customer) đơn giản nhất để chạy ngay trên trình duyệt máy tính.
+Tôi đang xây dựng Backend cho App Product CRUD bằng Node.js + Express theo cấu trúc Layered Architecture đã chốt ở trên.
 
 # Goal
-Tạo trọn bộ source code cho ứng dụng này.
+Viết code **FULL** cho toàn bộ các file trong thư mục `src/` và `server.js`, `docker-compose.yml`.
 
-# Info
-- Đối tượng: Customer (Id, FullName, Email, Phone, Address).
-- Tính năng: Xem danh sách, Thêm mới, Sửa, Xóa.
-
-# Constraints (Quan trọng)
-1.  **Tuyệt đối KHÔNG dùng Backend (Nodejs/Java)**. Hãy dùng **LocalStorage** của trình duyệt để lưu dữ liệu (để tôi chỉ cần mở file HTML là chạy).
-2.  Giao diện: Dùng **Bootstrap 5** cho đẹp, thiết kế responsive.
-3.  Cấu trúc: Viết tất cả trong 1 file `index.html` (gồm cả CSS và JS) cho dễ quản lý.
-4.  Có comment giải thích code tiếng Việt.
+# Constraints
+1.  **Architecture**: Phải tách code rõ ràng: Route -> Controller -> Service (nếu cần) -> Model.
+2.  **Database**: Kết nối PostgreSQL qua Docker. Dùng `Sequelize` làm ORM. Config DB để trong `src/config/`.
+3.  **Error Handling**: Phải có middleware xử lý lỗi tập trung (`error.middleware.js`). Try-catch trong Controller phải đẩy lỗi về middleware này.
+4.  **Logging**: Log lỗi rõ ràng ra console.
+5.  **API**: Đủ 4 món CRUD chuẩn RESTful.
+6.  **CORS**: Cấu hình mở CORS cho Frontend.
 
 # Format
-Trả về full code của file `index.html`.
+Bạn hãy tự động tạo folder `src` và các sub-folder, sau đó tạo và lưu nội dung vào từng file tương ứng.
+```
+
+### Turn 4: Thực thi Frontend (Execution - CGCF)
+Sau khi Backend chạy, tiếp tục yêu cầu Frontend:
+
+```markdown
+# Context
+Backend đã chạy ở port 3000. Giờ tôi cần giao diện cho file `public/index.html`.
+
+# Goal
+Viết code HTML + JS + Bootstrap để gọi các API trên.
+
+# Constraints
+1.  Giao diện gồm: Bảng danh sách sản phẩm và Form thêm mới/Sửa ở bên cạnh (2 cột).
+2.  Dùng `fetch` API của Javascript để gọi Backend.
+3.  Khi thêm/xóa thành công thì phải hiện Alert thông báo và load lại bảng.
+4.  Thiết kế màu xanh dương chủ đạo.
+
+# Format
+Bạn hãy tự tạo file `public/index.html` và lưu code vào đó.
 ```
 
 ### Tại sao Prompt này xịn?
@@ -314,13 +351,3 @@ Trả về full code của file `index.html`.
 2.  **Constraints**: "LocalStorage", "1 file index.html" -> Đảm bảo chạy được ngay (Vibe Coding) mà không cần cài đặt môi trường.
 3.  **Format**: Full code -> Copy là chạy.
 
----
-
-## 6. Mini Exercise (Thực hành - 10 phút)
-
-**Đề bài**: Hãy viết 1 Prompt để AI tạo ra **"Chương trình tính tiền đi taxi"**.
-
-**Yêu cầu**:
-1.  Áp dụng công thức C.G.C.F.
-2.  Đi qua bước "Tư vấn" trước nếu chưa biết giá cước taxi tính thế nào.
-3.  Constraints: Viết bằng Java (cho Em gái) hoặc Python (cho Vợ), input nhập từ bàn phím.

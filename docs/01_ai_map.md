@@ -132,18 +132,26 @@ Dựa trên mục tiêu riêng của từng người, đây là bộ công cụ 
 ### 👩‍💻 Cho Vợ (Role: Manual Tester → Automation)
 *   **Viết Mail, Bug Report, Test Case (Manual)**: Dùng **ChatGPT** (bản Plus càng tốt) hoặc **Claude**.
     *   *Lý do*: Cần khả năng hiểu ngôn ngữ tự nhiên tốt, văn phong mượt, không cần cài đặt phức tạp.
+    *   *Ví dụ*: `Paste mô tả lỗi tiếng Việt lủng củng vào và prompt: "Viết lại Bug Report này bằng tiếng Anh chuẩn, format Jira, giọng điệu chuyên nghiệp."`
 *   **Đọc tài liệu Specs/Requirement dày cộp**: Dùng **NotebookLM**.
     *   *Lý do*: Upload file PDF/Docs specs vào, hỏi gì nó trả lời đó từ tài liệu (không bịa). Rất hợp để tra cứu nghiệp vụ.
+    *   *Ví dụ*: `Upload file "Spec_Du_An_A.pdf", hỏi: "Liệt kê tất cả các điều kiện Validate (bắt lỗi) của trường Số điện thoại và Email được nhắc trong tài liệu."`
 *   **Tập tành Automation (Code Selenium)**: Dùng **Antigravity** (ưu tiên vì rẻ) hoặc **Cursor**.
     *   *Lý do*: Vợ không thạo gõ code. Hãy dùng Agent (Antigravity/Cursor) để ra lệnh: "Em tạo file test login cho chị, dùng Selenium Java", nó sẽ tự tạo file và viết code thay vì ngồi gõ từng dòng.
+    *   *Ví dụ*: `Mở Antigravity, gõ: "Tạo file LoginTest.java dùng Selenium, viết kịch bản đăng nhập thành công và đăng nhập sai pass. Tự import thư viện cần thiết."`
 
 ### 👩‍🎓 Cho Em gái (Role: Student Dev/Test)
 *   **Hỏi bài, tìm hiểu khái niệm mới**: Dùng **Perplexity** hoặc **ChatGPT**.
     *   *Lý do*: Perplexity luôn trích dẫn nguồn (web/wiki), giúp em check lại xem kiến thức có đúng sách giáo khoa không.
+    *   *Ví dụ*: `"Sự khác nhau giữa Abstract Class và Interface trong Java 17 là gì? Nêu ví dụ code minh họa."`
 *   **Làm bài tập Code / Đồ án môn học**: Dùng **Antigravity** (hoặc **Cursor**) kết hợp **GitHub Copilot** (SV được Free).
     *   *Lý do*: **Antigravity/Cursor** giúp em generate code cả dự án, tự động sinh code, sửa lỗi (Debug) cả đống file cùng lúc khi code không chạy. **Copilot** giúp code nhanh hơn khi tự gõ (gợi ý dòng tiếp theo).
+    *   *Ví dụ*:
+        *   *Antigravity*: `"Refactor class OrderService này theo chuẩn SOLID, tách hàm tính toán thuế ra class riêng."`
+        *   *Copilot*: `Gõ "public void sorting..." và để nó tự gợi ý code Bubble Sort.`
 *   **Ôn thi lý thuyết**: Dùng **NotebookLM**.
     *   *Lý do*: Ném slide bài giảng của thầy cô vào, bảo nó "Tóm tắt các ý chính" hoặc "Đặt câu hỏi trắc nghiệm cho tao ôn bài".
+    *   *Ví dụ*: `Upload slide "Chuong_3_CSDL.pptx", hỏi: "Tạo 10 câu hỏi trắc nghiệm khó về phần Normalization (Chuẩn hóa dữ liệu) để tôi tự test."`
 
 ---
 

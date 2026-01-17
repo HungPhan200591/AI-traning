@@ -40,94 +40,97 @@ Tôi muốn làm một app quản lý Sản phẩm (CRUD) nhưng chưa rõ cần
 
 -> **Expected**: AI gợi ý Node.js + Express và các trường (Name, Price...).
 
-### Bước 2: Lên kế hoạch (Planning - QUAN TRỌNG)
-*Mục tiêu: Ép AI tuân thủ cấu trúc chuẩn (Layered Architecture) trước khi viết code.*
+### Bước 2: Lên kế hoạch (Planning)
+*Mục tiêu: Định hình kiến trúc chuẩn chỉnh ngay từ đầu.*
 
-**Hành động**: Nhập tiếp prompt (Copy nguyên văn):
+**Hành động**: Nhập prompt sau:
 
 ```text
-OK, chốt phương án đó.
-1. Hãy đưa ra **Cấu trúc thư mục dự án chuẩn** theo mô hình Layered Architecture (Controller, Service, Route, Model) để dễ mở rộng, KHÔNG viết tất cả vào 1 file `server.js`.
-2. Cần có folder `config` cho DB, `middleware` để xử lý lỗi tập trung.
-3. Tạo file `docker-compose.yml` cho Postgres.
-**Constraint**: CHƯA viết code vội. Cần file tree trước.
+Tôi muốn xây dựng ứng dụng **Product Management** với các yêu cầu sau:
+1.  **Backend**: Node.js + Express + PostgreSQL (Sequelize).
+    *   Kiến trúc: Layered (Route -> Controller -> Service -> Model).
+    *   Tính năng: CRUD sản phẩm, hỗ trợ **Upload ảnh** (dùng Multer).
+2.  **Frontend**: HTML5 + Bootstrap 5 + JS thuần.
+    *   Giao diện hiện đại, chuyên nghiệp.
+    *   Tính năng: Xem danh sách (Grid/Table), Thêm/Sửa (Modal), Xem chi tiết (Offcanvas).
+3.  **Infrastructure**: Docker Compose cho DB.
+
+Hãy đóng vai Tech Lead, giúp tôi:
+1.  Đưa ra cấu trúc thư mục dự án chuẩn.
+2.  Liệt kê các trường dữ liệu cần thiết cho Product (bao gồm `image_url`).
 ```
 
--> **Expected**: AI đưa ra cây thư mục chuẩn (`src/controllers`, `src/models`...). Nếu AI code luôn -> Bấm Stop và mắng nó: *"Tôi bảo chưa code cơ mà!"*.
-
-### Bước 3: Code Backend (Execution - CGCF)
-*Mục tiêu: Dùng Meta-Prompt hoặc Prompt chuẩn để sinh code.*
+### Bước 3: Code Backend (Full Features)
+*Mục tiêu: Tạo Backend hoàn thiện một lần, hỗ trợ upload ảnh ngay lập tức.*
 
 **Hành động**: Nhập prompt lệnh:
 
 ```text
 # Context
-Tôi đang xây dựng Backend cho App Product CRUD bằng Node.js + Express theo cấu trúc Layered Architecture đã chốt ở trên.
+Tôi đã chốt cấu trúc dự án. Bây giờ hãy bắt đầu code Backend.
 
 # Goal
-Viết code **FULL** cho toàn bộ các file trong thư mục `src/` và `server.js`, `docker-compose.yml`.
+Viết code **FULL** cho toàn bộ Backend Node.js.
 
-# Constraints
-1.  **Architecture**: Phải tách code rõ ràng: Route -> Controller -> Service -> Model.
-2.  **Database**: Kết nối PostgreSQL qua Docker. Dùng `Sequelize` làm ORM.
-3.  **Error Handling**: Phải có middleware xử lý lỗi tập trung.
-4.  **API**: Đủ 4 món CRUD chuẩn RESTful.
-5.  **CORS**: Cấu hình mở CORS cho Frontend.
+# Requirements
+1.  **Architecture**: Tuân thủ nghiêm ngặt Layered Architecture.
+2.  **Database**:
+    *   Sử dụng Sequelize + PostgreSQL.
+    *   Model `Product` gồm: `name`, `description`, `price`, `stock`, `category`, `imageUrl`, `isActive`.
+    *   Tự động sync database khi chạy.
+3.  **Upload File**:
+    *   Cấu hình `multer` để upload ảnh vào thư mục `public/assets`.
+    *   API Create/Update phải nhận `multipart/form-data`.
+    *   Lưu đường dẫn ảnh tương đối vào DB (VD: `/assets/img1.jpg`).
+4.  **Configuration**:
+    *   Cấu hình `express.static` để serve ảnh từ thư mục `public`.
+    *   Cấu hình CORS để Frontend gọi được API.
 
 # Format
-Bạn hãy tự động tạo folder `src` và các sub-folder, sau đó tự tạo và lưu nội dung vào từng file tương ứng trong dự án.
+Bạn hãy tự động tạo folder `src`, `public/assets` và các file cần thiết (`server.js`, `docker-compose.yml`, ...).
 ```
 
--> **Expected**: Agent sẽ tự chạy lệnh `mkdir`, `touch`, và `write` file.
--> **Check**: Nhìn cây thư mục bên trái xem file đã hiện ra chưa.
-
-### Bước 4: Chạy Backend
-**Hành động**:
-1.  Mở Terminal (Ctrl + `).
-2.  Chạy lệnh cài thư viện:
-    ```bash
-    npm init -y
-    npm install express sequelize pg pg-hstore cors dotenv
-    ```
-3.  Bật Docker DB:
-    ```bash
-    docker-compose up -d
-    ```
-4.  Chạy Server:
-    ```bash
-    node server.js
-    ```
--> **Thành công**: Thấy dòng thông báo `Server is running on port 3000` và `Database connected`.
-
-### Bước 5: Code Frontend (Execution - CGCF)
-*Mục tiêu: Làm giao diện quản lý đơn giản.*
+### Bước 4: Code Frontend (Modern UI)
+*Mục tiêu: Giao diện đẹp, UX tốt ngay từ phiên bản đầu tiên.*
 
 **Hành động**: Nhập prompt tiếp:
 
 ```text
-# Context
-Backend đã chạy ở port 3000. Giờ tôi cần giao diện cho file `public/index.html`.
-
 # Goal
-Viết code HTML + JS + Bootstrap để gọi các API trên.
+Viết code Frontend cho ứng dụng (HTML/CSS/JS) trong thư mục `public/`.
 
-# Constraints
-1.  Giao diện gồm: Bảng danh sách sản phẩm và Form thêm mới/Sửa ở bên cạnh (2 cột).
-2.  Dùng `fetch` API của Javascript để gọi Backend.
-3.  Khi thêm/xóa thành công thì phải hiện Alert thông báo và load lại bảng.
-4.  Thiết kế màu xanh dương chủ đạo.
+# Requirements
+1.  **Layout & UI**:
+    *   Sử dụng **Bootstrap 5** mới nhất. Tông màu chủ đạo: Xanh dương (Modern Blue).
+    *   Header đẹp, có thống kê nhanh (Tổng SP, Tổng tiền...).
+    *   Danh sách sản phẩm: Hiển thị dạng Bảng (Table) với cột Ảnh thumbnail.
+2.  **Chức năng Thêm/Sửa**:
+    *   Sử dụng **Modal (Popup)** của Bootstrap.
+    *   Form có tính năng **Upload ảnh** và **Preview ảnh** ngay khi chọn file.
+    *   Xử lý gửi `FormData` lên API.
+3.  **Chức năng Xem chi tiết**:
+    *   Click vào tên sản phẩm -> Hiển thị **Offcanvas (Sidebar)** trượt từ phải ra.
+    *   Trong Sidebar hiện ảnh lớn và thông tin chi tiết.
+4.  **UX/Effect**:
+    *   Có Loading Spinner khi chờ API.
+    *   Thông báo **Toast/Alert** đẹp mắt góc màn hình khi thành công/thất bại.
 
 # Format
-Bạn hãy tự tạo file `public/index.html` và lưu code vào đó.
+Tạo các file: `public/index.html`, `public/css/style.css`, `public/js/app.js`.
 ```
 
-### Bước 6: Chạy thử & "Cấy" Bug
+### Bước 5: Chạy & Kiểm thử
 **Hành động**:
-1.  Mở file `public/index.html` bằng trình duyệt (hoặc dùng Extension "Live Server").
-2.  Thử thêm 1 sản phẩm:
-    *   Name: `Áo Thun`
-    *   Price: `-50000` (Nhập số âm).
-3.  -> **Bug**: Hệ thống vẫn cho lưu giá âm! (Đây là "mồi" cho phần Test Design sau này).
+1.  Cài đặt & Chạy Docker:
+    ```bash
+    npm install
+    npm install multer
+    docker-compose up -d
+    node server.js
+    ```
+2.  Mở trình duyệt: `http://localhost:3000` (hoặc port bạn cấu hình).
+3.  **Test Case**: Thử tạo sản phẩm có kèm ảnh -> Kiểm tra xem ảnh có hiển thị lại đúng không.
+4.  **Bug "Mồi"**: Vẫn thử nhập giá âm (-50000) để phục vụ bài test sau này.
 
 ---
 

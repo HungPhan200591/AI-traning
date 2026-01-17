@@ -409,10 +409,3 @@ Chốt workflow + bộ prompt mang về, học viên biết “mai đi làm áp 
 * Format prompt debug stacktrace, checklist flaky, common Selenium exceptions
 
 8. `99-cheatsheet-prompts.md`
-
-* Bộ prompt “mang đi làm”: generate / test / pom / debug / flaky
-
----
-
-Nếu bạn muốn mình “làm đúng kiểu giáo án cầm tay chỉ việc” hơn nữa, bước hợp lý tiếp theo là:
-Bạn bảo **“Triển khai sâu PHẦN 0 thành teacher notes 2 trang + slide bullet”** (chỉ phần 0 thôi), mình sẽ viết dạng **script nói + ví dụ kể chuyện + câu hỏi gợi mở** để bạn đứng lớp nói trơn tru.

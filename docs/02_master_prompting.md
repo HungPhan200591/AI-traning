@@ -19,10 +19,10 @@ Sau phần này, bạn cần đạt 3 điều:
 Đừng viết prompt như văn xuôi. Hãy dùng công thức để AI dễ hiểu.
 
 ### 🟢 1. C.R.E.O (Cơ bản - Dễ nhớ nhất)
-*   **C - Context**: Bối cảnh.
-*   **R - Request**: Yêu cầu.
-*   **E - Explanation**: Giải thích/Ví dụ.
-*   **O - Output**: Định dạng đầu ra.
+*   **C - Context (Bối cảnh)**: Bạn là ai? Đang gặp chuyện gì? Tại sao cần làm việc này?
+*   **R - Request (Yêu cầu)**: Bạn muốn AI làm chính xác hành động gì? (Viết, List, Tóm tắt...).
+*   **E - Explanation (Giải thích)**: Làm rõ ý muốn bằng ví dụ minh họa hoặc giải thích thêm để AI không hiểu nhầm.
+*   **O - Output (Đầu ra)**: Bạn muốn kết quả định dạng thế nào? (Bảng, Text, List, Code...).
 
 | Đặc điểm | Chi tiết |
 | :--- | :--- |
@@ -58,10 +58,10 @@ Sau phần này, bạn cần đạt 3 điều:
     ```
 
 ### 🟡 2. P.A.R.I (Trung bình - Cho xử lý sự cố)
-*   **P - Problem**: Vấn đề.
-*   **A - Action**: Hành động muốn AI làm.
-*   **R - Result**: Kết quả mong muốn.
-*   **I - Information**: Dữ liệu lỗi/Code.
+*   **P - Problem (Vấn đề)**: Mô tả lỗi/tình huống đang gặp phải (Lỗi gì? Xảy ra khi nào?).
+*   **A - Action (Hành động)**: Muốn AI làm gì để xử lý vấn đề đó? (Tìm nguyên nhân, Sửa code, Viết lại...).
+*   **R - Result (Kết quả)**: Mục đích cuối cùng đạt được là gì? (Code chạy được, Sếp hiểu, Khách hàng vui...).
+*   **I - Information (Dữ liệu)**: Cung cấp bằng chứng (Log lỗi, Đoạn code, Email gốc...).
 
 | Đặc điểm | Chi tiết |
 | :--- | :--- |
@@ -97,13 +97,13 @@ Sau phần này, bạn cần đạt 3 điều:
     ```
 
 ### 🔴 3. R.T.F (Nâng cao - Role, Task, Format)
-*   **R - Role**: Vai trò.
-*   **T - Task**: Nhiệm vụ.
-*   **F - Format**: Định dạng.
+*   **R - Role (Vai trò)**: Muốn AI đóng vai ai? (Chuyên gia, Người nổi tiếng, Khách hàng khó tính...).
+*   **T - Task (Nhiệm vụ)**: Việc cụ thể cần làm là gì?
+*   **F - Format (Định dạng)**: Kết quả trông như thế nào?
 
 | Đặc điểm | Chi tiết |
 | :--- | :--- |
-| **Điểm mạnh** | Ép AI đóng vai chuyên gia (Persona) để có tone giọng/kiến thức sâu. |
+| **Điểm mạnh** | Ép AI đóng vai chuyên gia (Persona) để có tone giọng/kiến thức sâu. <br> *Tại sao?*: Vì AI được huấn luyện trên dữ liệu khổng lồ. Khi gán Role, bạn giúp AI **"thu hẹp phạm vi tìm kiếm"** (Context Window) vào đúng vùng kiến thức chuyên môn đó (VD: Role Bác sĩ sẽ kích hoạt từ vựng y khoa, Role Marketing sẽ kích hoạt ngôn ngữ chốt sale), thay vì trả lời chung chung. |
 | **Điểm yếu** | Thiếu bối cảnh và ràng buộc chi tiết. |
 | **Nên dùng** | Khi cần tư vấn chuyên môn sâu (Đóng vai Bác sĩ, Luật sư, Senior Dev). |
 | **Không nên** | Task cần độ chính xác kỹ thuật cao mà không cần "diễn". |
@@ -132,19 +132,19 @@ Sau phần này, bạn cần đạt 3 điều:
     ```
 
 ### 🔴 4. C.O.S.T.A.R (Siêu chi tiết - Context, Objective, Style, Tone, Audience, Response)
-*   **C - Context**: Bối cảnh.
-*   **O - Objective**: Mục tiêu.
-*   **S - Style**: Phong cách viết.
-*   **T - Tone**: Giọng điệu.
-*   **A - Audience**: Đối tượng độc giả.
-*   **R - Response**: Định dạng trả về.
+*   **C - Context (Bối cảnh)**: Tình huống hiện tại.
+*   **O - Objective (Mục tiêu)**: Việc cần đạt được.
+*   **S - Style (Phong cách)**: Viết theo trường phái nào? (Hài hước, Hàn lâm, Thơ ca, Marketing...).
+*   **T - Tone (Giọng điệu)**: Cảm xúc truyền tải (Nghiêm túc, Tức giận, Thân thiện, Khẩn thiết...).
+*   **A - Audience (Người đọc)**: Ai sẽ đọc kết quả này? (Trẻ em, Chuyên gia, Sếp già, Khách hàng...).
+*   **R - Response (Định dạng)**: Cấu trúc câu trả lời mong muốn.
 
 | Đặc điểm | Chi tiết |
 | :--- | :--- |
 | **Điểm mạnh** | Kiểm soát hoàn toàn phong cách và đối tượng đọc. |
-| **Điểm yếu** | Quá dài, tốn thời gian viết prompt. |
+| **Điểm yếu** | Quá dài. **Thiếu mục Constraints (Ràng buộc)** riêng biệt (thường phải viết gộp vào Objective). |
 | **Nên dùng** | Viết Content Marketing, Email trang trọng gửi Sếp, viết Docs dự án. |
-| **Không nên** | Chat nhanh, hỏi code ngắn. |
+| **Không nên** | Chat nhanh, hỏi code ngắn, làm việc cần độ chính xác kỹ thuật cao. |
 
 **Ví dụ Áp dụng:**
 
@@ -190,10 +190,12 @@ Sau phần này, bạn cần đạt 3 điều:
 
 | Đặc điểm | Chi tiết |
 | :--- | :--- |
-| **Điểm mạnh** | Cân bằng hoàn hảo: Đủ bối cảnh (C), Đủ mục tiêu (G), Đủ rào chắn (C) để không sai. |
-| **Nên dùng** | **Làm App CRUD**, Viết Test Script, Refactor Project (Các task chính của Workshop). |
+| **Điểm mạnh** | **An toàn & Chính xác cao**. Nhờ có Constraints (Ràng buộc), nó chặn đứng các khả năng AI làm sai hoặc sáng tạo quá đà. Cấu trúc cân bằng giữa Bối cảnh và Logic. |
+| **Điểm yếu** | Hơi khô khan nếu dùng cho việc sáng tạo văn học (vì tính logic cao). |
+| **Nên dùng** | **Các tác vụ Kỹ thuật & Logic**: Coding (CRUD app), Auto Test Script, Phân tích dữ liệu, Lập kế hoạch dự án. Bất cứ việc gì cần độ chính xác. |
+| **Không nên** | Viết thơ, tán gẫu, sáng tạo nghệ thuật bay bổng (dùng C.R.E.O hoặc C.O.S.T.A.R hợp hơn). |
 
-**Ví dụ Áp dụng (QUAN TRỌNG):**
+**Ví dụ Áp dụng:**
 
 *   **Đời thường (Lên thực đơn)**
     ```text
@@ -221,7 +223,29 @@ Sau phần này, bạn cần đạt 3 điều:
 
 ---
 
-## 3. Chiến lược "Xây Prompt từ ý tưởng mơ hồ" (Prompt Refining Strategy)
+## 3. Summary: Cốt lõi (Khi quên công thức)
+
+Nếu thấy các công thức trên (C.R.E.O, C.G.C.F...) khó nhớ, bạn chỉ cần nắm chắc **3 Yếu tố Vàng** này (Dù viết kiểu gì cũng PHẢI có):
+
+### 1️⃣ Context (Bối cảnh - AI "mù" nếu thiếu cái này)
+AI không biết bạn là ai, đang làm dự án gì. Hãy cung cấp bối cảnh trước.
+*   *Thiếu*: "Viết code login đi." -> AI viết code lung tung (React? Java? PHP?).
+*   *Đủ*: "Tôi đang làm web **HTML thuần**, không dùng Framework." -> AI viết đúng HTML/JS.
+
+### 2️⃣ Goal (Mục tiêu - Muốn gì nói thẳng)
+Đừng nói vòng vo. Dùng động từ mạnh: *Tạo, Viết, Sửa, Tóm tắt, Liệt kê*.
+
+### 3️⃣ Constraints (Ràng buộc - "Vòng kim cô") - QUAN TRỌNG NHẤT
+Đây là yếu tố phân biệt Pro và Newbie. Hãy cho AI biết **những gì KHÔNG được làm**.
+*   "Không dùng thư viện ngoài."
+*   "Không giải thích dài dòng, chỉ đưa code."
+*   "Phải có comments tiếng Việt."
+
+> **Mẹo nhỏ**: Trước khi bấm Enter, hãy tự hỏi: *"Nếu mình là người lạ, đọc câu này có hiểu lầm không?"*. Nếu có, hãy thêm Constraints.
+
+---
+
+## 4. Chiến lược "Xây Prompt từ ý tưởng mơ hồ" (Prompt Refining Strategy)
 
 Thực tế: Bạn thường **không biết mình muốn gì** ngay từ đầu.
 Ví dụ: *"Muốn làm app CRUD Product"* -> Nhưng chưa biết Product có trường gì, dùng công nghệ nào.
@@ -245,7 +269,7 @@ Gộp thông tin bước 2 vào công thức **C.G.C.F** để AI gen code.
 
 ---
 
-## 4. Step-by-Step Example (Tạo App CRUD Fullstack)
+## 5. Step-by-Step Example (Tạo App CRUD Fullstack)
 
 Dưới đây là ví dụ minh họa cách áp dụng chiến lược trên.
 
@@ -292,7 +316,7 @@ Trả về full code của file `index.html`.
 
 ---
 
-## 5. Mini Exercise (Thực hành - 10 phút)
+## 6. Mini Exercise (Thực hành - 10 phút)
 
 **Đề bài**: Hãy viết 1 Prompt để AI tạo ra **"Chương trình tính tiền đi taxi"**.
 

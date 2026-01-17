@@ -50,34 +50,44 @@ Khi dùng AI, bạn **luôn giữ vai trò “Controller” (người kiểm so�
 ## 4. The 5 Rules (5 Luật sử dụng AI)
 
 ### 1️⃣ Context (Luật Bối cảnh)
-
 AI **không biết hệ thống của bạn**.
 → Phải nói rõ: đang làm gì, cho ai, trong hoàn cảnh nào (**Project & User Context**).
+→ **Ví dụ:**
+*   ⚠️ **Weak**: "Viết API lấy danh sách User." (AI sẽ hỏi: Ngôn ngữ gì? DB gì?)
+*   ✅ **Standard**: "Viết API `GET /users` bằng **Java Spring Boot**, lấy dữ liệu từ **PostgreSQL**, trả về JSON."
 
 ### 2️⃣ Constraints (Luật Ràng buộc)
-
 Không nói ràng buộc → AI tự chọn theo ý nó (**Randomness**).
 → Luôn nói rõ: **không dùng gì, phải theo chuẩn gì (Coding Standards)**.
+→ **Ví dụ:**
+*   ⚠️ **Weak**: "Viết test case cho chức năng Đăng ký." (AI viết văn xuôi hoặc bảng tuỳ ý)
+*   ✅ **Standard**: "Viết Test Case chức năng Đăng ký, format **bảng Excel** (gồm cột: ID, Description, Steps, Expected), cover cả **trường hợp validation**."
 
 ### 3️⃣ Verification (Luật Kiểm tra)
-
 AI **không chạy code thay bạn**.
 → Mọi thứ phải **chạy được trên máy bạn** (**Local Environment**).
 → Nguyên tắc: **Trust but Verify**.
+→ **Ví dụ:**
+*   AI gợi ý dùng `String.isBlank()`.
+*   Project bạn chạy **Java 8** (chưa có hàm này) → Build lỗi ngay. Hãy kiểm tra version trước khi copy.
 
 ### 4️⃣ Data (Luật Dữ liệu)
-
 Khi có lỗi (**Bug/Error**), **đưa dữ liệu thật**:
+*   Logs
+*   Stacktrace
+*   Code snippet
+*   Screenshot
 
-* Logs
-* Stacktrace
-* Code snippet
-* Screenshot
+→ **Ví dụ:**
+*   ⚠️ **Weak**: "Code lỗi 500 rồi em ơi." (AI chịu, không đoán được)
+*   ✅ **Standard**: "API trả về 500. Log server báo: `java.lang.NullPointerException at com.example.UserService.getUser(UserService.java:25)`..."
 
 ### 5️⃣ Short Loop (Luật Vòng lặp ngắn)
-
 Không nói chuyện dài dòng với AI.
 → **Ask → Run → Fix → Ask again**.
+→ **Ví dụ:**
+*   ⚠️ **Weak**: "Viết full một trang dashboard quản lý có biểu đồ, bảng dữ liệu, filter, export excel." (Quá nhiều, code sẽ bị cắt giữa chừng).
+*   ✅ **Standard**: "Viết Component **Bảng dữ liệu (Table)** hiển thị user trước." (Xong mới làm tiếp Filter, Chart).
 
 ---
 
@@ -92,23 +102,39 @@ Không nói chuyện dài dòng với AI.
 6. Peer Review & Retry (Bạn sửa và chạy lại)
 ```
 
+### Example Scenario (Ví dụ: Viết Unit Test):
+*   **Bước 1**: "Viết Unit Test (JUnit 5) cho hàm `calculateTotal(Order order)`."
+*   **Bước 2**: AI trả về code test case cơ bản (Happy path).
+*   **Bước 3**: Bạn chạy test -> Thấy lỗi đỏ (Red) ở case "Order null".
+*   **Bước 4**: Copy lỗi JUnit: `java.lang.NullPointerException...` gửi AI.
+*   **Bước 5**: AI sửa code: thêm check `if (order == null)` và throw Exception hợp lý.
+*   **Bước 6**: Bạn chạy lại -> Test xanh (Green).
+
 > **Lỗi không phải thất bại – lỗi là Input information để sửa.**
 
 ---
 
 ## 6. Prompting (Hỏi AI thế nào cho đúng?)
 
-### ❌ Bad Prompt (Cách hỏi kém hiệu quả)
+### ⚠️ Weak Prompt (Cách hỏi chưa nét)
 
-> “Sao code này lỗi vậy?” (Lack of Context)
+> “Tạo giúp tôi class Entity cho bảng Product nhé.”
+→ *(Thiếu field, thiếu công nghệ, AI sẽ tạo đại một class Java POJO thường hoặc code sai chuẩn)*
 
-### ✅ Good Prompt (Cách hỏi chuẩn)
+### ✅ Strong Prompt (Cách hỏi đầy đủ)
 
-> **Context**: Tôi đang làm...
-> **Goal**: Mục tiêu là...
-> **Constraints**: Ràng buộc là...
-> **Error**: Lỗi gặp phải (Logs/Image)...
-> **Expectation**: Tôi mong AI giải thích + đề xuất cách sửa
+**Template:**
+> **Context**: Tôi đang làm [Công việc]...
+> **Goal**: Mục tiêu là [Kết quả]...
+> **Constraints**: Ràng buộc [Công nghệ/Quy tắc]...
+> **Error**: (Nếu có lỗi) Lỗi gặp phải [Logs/Image]...
+> **Expectation**: (Tuỳ chọn) Format mong muốn
+
+**Ví dụ:**
+> **Context**: Project Spring Boot bán hàng.
+> **Goal**: Tạo Entity mapping với bảng `products`.
+> **Constraints**: Dùng **JPA (Hibernate)**, **Lombok (@Data)**. Field `price` dùng `BigDecimal`, bắt buộc `NOT NULL`.
+> **Expectation**: Trả về code Java class hoàn chỉnh.
 
 > **Clear Input → Better Output.**
 
@@ -116,10 +142,18 @@ Không nói chuyện dài dòng với AI.
 
 ## 7. Common Mistakes (Những sai lầm phổ biến)
 
-* ❌ Vague Prompt (Hỏi chung chung)
-* ❌ Blind Trust (Tin kết quả AI mà không chạy thử)
-* ❌ No Logs (Không đưa log khi debug)
-* ❌ Overloaded Request (Hỏi nhiều việc trong 1 câu)
+* ❌ **Vague Prompt (Hỏi chung chung)**
+    *   *Weak*: "Viết test login."
+    *   *Fix*: "Viết 5 test cases cho Login: 1 đúng, 1 sai pass, 1 user không tồn tại, 1 để trống, 1 SQL Injection."
+* ❌ **Blind Trust (Tin kết quả AI mà không chạy thử)**
+    *   *Ví dụ*: AI import thư viện lạ (`import com.google.common...`) mà file `pom.xml` chưa khai báo dependency.
+    *   *Fix*: Check import và file cấu hình dependencies.
+* ❌ **No Logs (Không đưa log khi debug)**
+    *   *Weak*: "Nó không chạy được."
+    *   *Fix*: "Console báo lỗi dòng 15: `ArrayIndexOutOfBoundsException: Index 5 out of bounds`."
+* ❌ **Overloaded Request (Hỏi nhiều việc trong 1 câu)**
+    *   *Weak*: "Viết automation script login xong rồi tìm kiếm sản phẩm rồi thêm vào giỏ hàng."
+    *   *Fix*: "Viết script **Login** chạy ổn đã." (Rồi mới làm tiếp script Tìm kiếm).
 
 → **Chỉ cần sửa 4 lỗi này là dùng AI hiệu quả hơn 80%.**
 

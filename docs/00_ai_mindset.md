@@ -8,7 +8,7 @@
 
 Sau phần này, bạn cần đạt 3 điều:
 
-* Hiểu **AI dùng để làm việc (Work)**, không phải để hỏi chuyện linh tinh
+* Hiểu **cách dùng AI để làm việc (Work)**,
 * Biết **cách giao việc chuẩn (Standard Delegation)** cho AI
 * Biết **cách kiểm soát kết quả (Control & Verify)** AI trả về
 

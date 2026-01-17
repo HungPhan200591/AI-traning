@@ -95,7 +95,7 @@ C) Bảng so sánh các Prompt Framework:
 
 D) 1 Prompt hoàn chỉnh để sinh project Fullstack Node.js:
    - Có CRUD sản phẩm
-   - Có lỗi logic cố tình (giá âm)
+   - Có lỗi logic cố tình
    - Đầu ra gồm:
      + Cấu trúc thư mục
      + app.js

@@ -50,57 +50,69 @@ Khi dùng AI, bạn **luôn giữ vai trò “Controller” (người kiểm so�
 ## 4. The 5 Rules (5 Luật sử dụng AI)
 
 ### 1️⃣ Context (Luật Bối cảnh)
-AI **không biết hệ thống của bạn**.
-→ Phải nói rõ: đang làm gì, cho ai, trong hoàn cảnh nào (**Project & User Context**).
+AI **không biết hệ thống của bạn**. Phải nói rõ: đang làm gì, cho ai, trong hoàn cảnh nào.
 
-*   **Ví dụ 1 (Tester/Đời thường):**
-    *   ⚠️ **Weak**: "Lên kế hoạch đi Đà Lạt cho 4 người." 
-    *   ✅ **Strong**: "Lên lịch trình đi **Đà Lạt 3 ngày 2 đêm**, cho **nhóm bạn 4 người**, ngân sách **tiết kiệm**, thích **săn mây và chụp ảnh**."
-*   **Ví dụ 2 (Sinh viên/Code):**
+*   **1. Ví dụ Đời thường (Analogy)**:
+    *   ⚠️ **Weak**: "Lên kế hoạch đi Đà Lạt." (Thiếu ngân sách, sở thích).
+    *   ✅ **Strong**: "Lên lịch trình **Đà Lạt 3 ngày 2 đêm** cho **4 người**, ngân sách **tiết kiệm**, thích **săn mây**."
+*   **2. Ví dụ Tester (Manual + Auto)**:
+    *   ⚠️ **Weak**: "Viết kịch bản test Login."
+    *   ✅ **Strong**: "Viết Test Case cho **form Login** (gồm: User, Pass, Nút Login), cover cả **Validation, SQL Injection**. Sau đó, viết **Selenium Script** (Java) để tự động chạy các case này."
+*   **3. Ví dụ Sinh viên (Code Logic)**:
     *   ⚠️ **Weak**: "Giải thích thuật toán Bubble Sort."
-    *   ✅ **Strong**: "Giải thích thuật toán Bubble Sort bằng **Java**, dùng ví dụ **dãy số [5, 1, 4, 2]**, minh họa từng bước tráo đổi."
+    *   ✅ **Strong**: "Giải thích Bubble Sort bằng **Java**, dùng ví dụ dãy số `[5, 1, 4, 2]` để minh họa từng bước tráo đổi."
 
 ### 2️⃣ Constraints (Luật Ràng buộc)
-Không nói ràng buộc → AI tự chọn theo ý nó (**Randomness**).
-→ Luôn nói rõ: **không dùng gì, phải theo chuẩn gì (Coding Standards)**.
+Không nói ràng buộc → AI tự chọn theo ý nó (Randomness). Luôn nói rõ: **không dùng gì, phải theo chuẩn gì**.
 
-*   **Ví dụ 1 (Tester - Công việc):**
-    *   ⚠️ **Weak**: "Viết bug report cho lỗi đăng nhập."
-    *   ✅ **Strong**: "Viết Bug Report lỗi đăng nhập, format chuẩn **Jira** (Summary, Steps, Actual, Expected), dùng **tiếng Anh**, Severity **High**."
-*   **Ví dụ 2 (Sinh viên - Bài tập):**
+*   **1. Ví dụ Đời thường (Analogy)**:
+    *   ⚠️ **Weak**: "Nấu món gì ngon ngon từ trứng đi."
+    *   ✅ **Strong**: "Nấu món từ trứng, nhưng **không dùng dầu mỡ** (đang giảm cân), chế biến **nhanh dưới 15 phút**."
+*   **2. Ví dụ Tester (Manual + Auto)**:
+    *   ⚠️ **Weak**: "Viết bug report lỗi này."
+    *   ✅ **Strong**: "Viết Bug Report lỗi Login, format chuẩn **Jira** (Summary, Steps, Actual, Expected), Priority **Critical**, viết bằng **Tiếng Anh**."
+*   **3. Ví dụ Sinh viên (Code Logic)**:
     *   ⚠️ **Weak**: "Viết hàm tính giai thừa."
     *   ✅ **Strong**: "Viết hàm tính giai thừa bằng **C++**, dùng **Đệ quy (Recursion)**, KHÔNG dùng vòng lặp `for/while`."
 
 ### 3️⃣ Verification (Luật Kiểm tra)
-AI **không chạy code thay bạn**. Bạn phải chạy trên **Local Environment**.
-→ Nguyên tắc: **Trust but Verify**.
+AI **không chạy code thay bạn**. Bạn phải chạy trên **Local Environment**. Nguyên tắc: **Trust but Verify**.
 
-*   **Ví dụ 1 (Tester):**
-    *   AI gợi ý: "Dùng tool `Selenium IDE` record màn hình."
-    *   Thực tế: Công ty cấm cài extension lạ -> **Verify**: Check policy công ty trước khi tin.
-*   **Ví dụ 2 (Sinh viên):**
-    *   AI giải bài toán xác suất thống kê ra kết quả `0.2`.
-    *   **Verify**: Tính tay lại công thức xem logic đúng không, đừng chép ngay vào bài thi.
+*   **1. Ví dụ Đời thường (Analogy)**:
+    *   AI gợi ý: "Quán phở A ngon lắm, mở xuyên đêm."
+    *   **Verify**: Lên Google Maps/Facebook check lại xem giờ mở cửa thực tế, đừng đi luôn kẻo quán đóng cửa.
+*   **2. Ví dụ Tester (Manual + Auto)**:
+    *   AI gợi ý: "Dùng `Thread.sleep(5000)` để đợi loading."
+    *   **Verify**: Check lại kiến thức → Đây là *bad practice* (đợi cứng làm chậm tool). Phải đổi sang dùng `WebDriverWait` (đợi mềm) mới chuẩn.
+*   **3. Ví dụ Sinh viên (Code Logic)**:
+    *   AI giải bài toán: "Xác suất là 1.5."
+    *   **Verify**: Xác suất luôn <= 1. AI đang tính sai, hãy tính tay lại công thức.
 
 ### 4️⃣ Data (Luật Dữ liệu)
 Khi có lỗi (**Bug/Error**), **đưa dữ liệu thật**:
 
-*   **Ví dụ 1 (Tester):**
+*   **1. Ví dụ Đời thường (Analogy)**:
+    *   ⚠️ **Weak**: "Xe máy của anh bị hỏng."
+    *   ✅ **Strong**: "Xe không đề được, có tiếng kêu 'xẹt xẹt' ở dưới gầm, đèn xe vẫn sáng." (Mô tả triệu chứng cụ thể).
+*   **2. Ví dụ Tester (Manual + Auto)**:
     *   ⚠️ **Weak**: "Nút Submit không bấm được."
-    *   ✅ **Strong**: "Nút Submit bị xám (disable). Inspect HTML thấy thuộc tính `disabled="true"`. Screenshot đính kèm..."
-*   **Ví dụ 2 (Sinh viên):**
-    *   ⚠️ **Weak**: "Bài code này chạy ra sai."
-    *   ✅ **Strong**: "Input nhập `n = 5` thì đúng, nhưng `n = 20` thì ra số âm (sai). Nghi ngờ tràn số kiểu `int`."
+    *   ✅ **Strong**: "Nút Submit bị xám (disable). Inspect HTML thấy thuộc tính `disabled="true"`. Đã check field bắt buộc điền đủ."
+*   **3. Ví dụ Sinh viên (Code Logic)**:
+    *   ⚠️ **Weak**: "Code chạy sai rồi."
+    *   ✅ **Strong**: "Input nhập `n = 5` thì đúng, nhưng `n = 20` thì ra số âm. Nghi ngờ tràn số kiểu `int`."
 
 ### 5️⃣ Short Loop (Luật Vòng lặp ngắn)
 Không nói chuyện dài dòng. **Ask → Run → Fix → Ask again**.
 
-*   **Ví dụ 1 (Tester):**
-    *   ⚠️ **Weak**: "Viết 100 test case cho cả website bán hàng." (AI sẽ viết sơ sài, lặp lại).
-    *   ✅ **Strong**: "Viết test case cho **Màn hình Đăng nhập** trước. Xong màn này mới qua màn Giỏ hàng."
-*   **Ví dụ 2 (Sinh viên):**
-    *   ⚠️ **Weak**: "Code cả game Rắn săn mồi hoàn chỉnh."
-    *   ✅ **Strong**: "Code chức năng **vẽ con rắn di chuyển** trên màn hình đen trước." (Chưa cần ăn mồi, chưa cần tính điểm).
+*   **1. Ví dụ Đời thường (Analogy)**:
+    *   ⚠️ **Weak**: "Lập kế hoạch xây nhà trọn gói từ móng đến nóc kèm nội thất chi tiết."
+    *   ✅ **Strong**: "Lên ý tưởng **bố trí phòng khách** trước." (Chốt xong Khách mới qua Bếp, Ngủ).
+*   **2. Ví dụ Tester (Manual + Auto)**:
+    *   ⚠️ **Weak**: "Viết automation test cho cả trang web Ecommerce."
+    *   ✅ **Strong**: "Viết script login thành công trước." (Chạy ổn định rồi mới viết tiếp case login sai, rồi mới qua trang Search).
+*   **3. Ví dụ Sinh viên (Code Logic)**:
+    *   ⚠️ **Weak**: "Code game Rắn săn mồi hoàn chỉnh."
+    *   ✅ **Strong**: "Code chức năng **vẽ con rắn** (hình vuông) lên màn hình đen trước." (Chưa cần di chuyển, chưa cần ăn mồi).
 
 ---
 
@@ -139,16 +151,22 @@ Không nói chuyện dài dòng. **Ask → Run → Fix → Ask again**.
 > **Constraints**: Ràng buộc [Quy tắc/Format]...
 > **Info/Error**: Dữ liệu đầu vào hoặc Lỗi...
 
-**Ví dụ 1 (Dành cho Tester - Viết Email):**
+**1. Ví dụ Đời thường (Analogy - Đi chợ):**
+> **Context**: Đang đi siêu thị mua đồ cho tiệc nướng BBQ cuối tuần.
+> **Goal**: Lên danh sách mua đồ cho 6 người ăn.
+> **Constraints**: Ngân sách 1 triệu, có 2 người ăn chay, không mua thịt bò.
+> **Info**: Đã có sẵn bếp nướng và than.
+
+**2. Ví dụ Tester (Manual - Viết Email):**
 > **Context**: Là Manual Tester, cần gửi email cho Dev Team.
-> **Goal**: Báo cáo việc bug Critical ở Production đã được fix xong.
+> **Goal**: Báo cáo bug Critical ở Production đã được fix xong.
 > **Constraints**: Giọng văn chuyên nghiệp, ngắn gọn, CC cho Project Manager.
 > **Info**: Bug ID là #JIRA-123.
 
-**Ví dụ 2 (Dành cho Sinh viên - Học code):**
+**3. Ví dụ Sinh viên (Học Code):**
 > **Context**: Đang học cấu trúc dữ liệu Stack/Queue.
 > **Goal**: Hiểu sự khác nhau giữa Stack và Queue.
-> **Constraints**: Giải thích bằng hình ảnh tượng hình (ví dụ đời sống), không dùng code phức tạp.
+> **Constraints**: Giải thích bằng hình ảnh tượng hình (ví dụ đời sống: xếp chồng sách vs xếp hàng), không dùng code phức tạp.
 
 ---
 
@@ -176,15 +194,19 @@ Hầu hết prompt yếu đến từ **3 tư duy sai lầm** (Mindset Traps):
 ## 8. Common Mistakes (Những sai lầm phổ biến)
 
 * ❌ **Vague Prompt (Hỏi chung chung)**
+    *   *Analogy*: "Mua quà hộ tớ." → *Fix*: "Mua quà sinh nhật cho bạn gái, thích mỹ phẩm, dưới 500k."
     *   *Tester*: "Test trang này đi." → *Fix*: "Test **Giao diện (UI)** trang Home trên **Mobile**."
     *   *Student*: "Giảng bài Pointer." → *Fix*: "Giải thích khái niệm **Pointer trong C** qua ví dụ swap biến."
 * ❌ **Blind Trust (Tin kết quả AI mà không kiểm tra)**
-    *   *Tester*: AI bảo "Câu SQL này đúng rồi". → *Fix*: Chạy thử trong Database xem có ra kết quả thật không.
-    *   *Student*: AI viết code dùng thư viện lạ. → *Fix*: Kiểm tra xem mình đã học/được dùng thư viện đó chưa.
+    *   *Analogy*: AI bảo "Đi đường này nhanh nhất" (vào ngõ cụt). → *Fix*: Nhìn biển báo thực tế trên đường.
+    *   *Tester*: AI bảo "Câu SQL này đúng rồi". → *Fix*: Chạy thử trong Database xem có lỗi cú pháp không.
+    *   *Student*: AI viết code dùng thư viện lạ. → *Fix*: Kiểm tra xem trường có cho dùng thư viện đó không.
 * ❌ **No Logs (Giấu dữ liệu lỗi)**
+    *   *Analogy*: "Bác sĩ ơi tôi đau bụng." → *Fix*: "Đau râm ran vùng rốn từ tối qua, sau khi ăn hải sản."
     *   *Tester*: "Login không được." → *Fix*: "Bấm Login thì loading mãi, F12 thấy lỗi 504 Gateway Time-out."
     *   *Student*: "Bài không chạy." → *Fix*: "Console báo lỗi dòng 10: `IndexOutOfBounds`."
 * ❌ **Overloaded (Nhồi nhét quá nhiều việc)**
+    *   *Analogy*: "Dọn sạch cả cái nhà 5 tầng trong 1 tiếng." → *Fix*: "Dọn phòng khách tầng 1 trước."
     *   *Tester*: "Viết full kịch bản test cho cả dự án." → *Fix*: "Viết kịch bản test cho **luồng Quên mật khẩu**."
     *   *Student*: "Làm game cờ vua." → *Fix*: "Làm **bàn cờ và quân Tốt** di chuyển được trước."
 

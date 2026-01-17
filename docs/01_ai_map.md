@@ -134,7 +134,7 @@ Dựa trên mục tiêu riêng của từng người, đây là bộ công cụ 
     *   *Lý do*: Cần khả năng hiểu ngôn ngữ tự nhiên tốt, văn phong mượt, không cần cài đặt phức tạp.
     *   *Ví dụ*: `Paste mô tả lỗi tiếng Việt lủng củng vào và prompt: "Viết lại Bug Report này bằng tiếng Anh chuẩn, format Jira, giọng điệu chuyên nghiệp."`
 *   **Đọc tài liệu Specs/Requirement dày cộp**: Dùng **NotebookLM**.
-    *   *Lý do*: Upload file PDF/Docs specs vào, hỏi gì nó trả lời đó từ tài liệu (không bịa). Rất hợp để tra cứu nghiệp vụ.
+    *   *Lý do*: Upload file PDF/Docs specs vào. Nó ưu tiên trả lời từ tài liệu. Nếu không có, nó mới dùng kiến thức ngoài nhưng sẽ **luôn cảnh báo rõ ràng** ("Thông tin này không có trong tài liệu..."). Rất minh bạch để tra cứu.
     *   *Ví dụ*: `Upload file "Spec_Du_An_A.pdf", hỏi: "Liệt kê tất cả các điều kiện Validate (bắt lỗi) của trường Số điện thoại và Email được nhắc trong tài liệu."`
 *   **Tập tành Automation (Code Selenium)**: Dùng **Antigravity** (ưu tiên vì rẻ) hoặc **Cursor**.
     *   *Lý do*: Vợ không thạo gõ code. Hãy dùng Agent (Antigravity/Cursor) để ra lệnh: "Em tạo file test login cho chị, dùng Selenium Java", nó sẽ tự tạo file và viết code thay vì ngồi gõ từng dòng.

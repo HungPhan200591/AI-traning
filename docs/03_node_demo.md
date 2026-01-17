@@ -18,7 +18,7 @@
 
 ## 2. Kịch bản thực hành (Scenario)
 
-**Bài toán**: Xây dựng ứng dụng **Quản lý Kho hàng (Product Management)**.
+**Bài toán**: Xây dựng ứng dụng **Quản lý Sản phẩm (Product Management)**.
 *   **Chức năng**: Xem danh sách, Thêm, Sửa, Xóa sản phẩm.
 *   **Công nghệ**:
     *   Backend: Node.js + Express (Layered Architecture).

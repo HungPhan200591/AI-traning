@@ -46,10 +46,10 @@ docker-compose up -d
 The `.env` file is already configured with default values:
 
 ```env
-PORT=3000
+PORT=8998
 NODE_ENV=development
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=5435
 DB_NAME=product_db
 DB_USER=postgres
 DB_PASSWORD=postgres
@@ -61,7 +61,7 @@ DB_PASSWORD=postgres
 npm run dev
 ```
 
-The server will start at `http://localhost:3000`
+The server will start at `http://localhost:8998`
 
 ## 📁 Project Structure
 
@@ -94,7 +94,7 @@ product-crud-backend/
 
 ## 🔌 API Endpoints
 
-### Base URL: `http://localhost:3000/api`
+### Base URL: `http://localhost:8998/api`
 
 | Method | Endpoint | Description | Body/Query |
 |--------|----------|-------------|------------|
@@ -186,9 +186,9 @@ GET /api/products?category=Electronics&isActive=true
 
 ## 🖼️ Accessing Uploaded Images
 
-Images are served statically from `http://localhost:3000/assets/filename.jpg`
+Images are served statically from `http://localhost:8998/assets/filename.jpg`
 
-Example: `http://localhost:3000/assets/laptop-1705561234567-123456789.jpg`
+Example: `http://localhost:8998/assets/laptop-1705561234567-123456789.jpg`
 
 ## 🛠️ Technologies Used
 

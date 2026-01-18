@@ -5,14 +5,15 @@ Full-featured Node.js backend for Product Management with CRUD operations, built
 ## ✨ Features
 
 - ✅ **Layered Architecture** (Config → Model → Service → Controller → Route)
-- ✅ **RESTful API** with full CRUD operations
+- ✅ **RESTful API** with full CRUD operations for **Products** and **Customers**
 - ✅ **PostgreSQL** database with Sequelize ORM
-- ✅ **Image Upload** using Multer (saved to `public/assets/`)
+- ✅ **Image Upload** using Multer (Product images & Customer avatars)
 - ✅ **Auto Database Sync** (creates tables automatically)
 - ✅ **CORS** enabled for cross-origin requests
 - ✅ **Static File Serving** for uploaded images
 - ✅ **Comprehensive Error Handling**
 - ✅ **Input Validation** middleware
+- ✅ **Email Uniqueness Validation** for customers
 - ✅ **Docker Compose** for PostgreSQL
 
 ## 📋 Prerequisites
@@ -73,19 +74,23 @@ product-crud-backend/
 │   │   └── multer.js            # File upload configuration
 │   ├── models/
 │   │   ├── Product.js           # Product model
+│   │   ├── Customer.js          # Customer model
 │   │   └── index.js             # Model exports
 │   ├── services/
-│   │   └── ProductService.js    # Business logic
+│   │   ├── ProductService.js    # Product business logic
+│   │   └── CustomerService.js   # Customer business logic
 │   ├── controllers/
-│   │   └── ProductController.js # Request handlers
+│   │   ├── ProductController.js # Product request handlers
+│   │   └── CustomerController.js # Customer request handlers
 │   ├── routes/
 │   │   ├── productRoutes.js     # Product endpoints
+│   │   ├── customerRoutes.js    # Customer endpoints
 │   │   └── index.js             # Route aggregation
 │   └── middlewares/
 │       ├── errorHandler.js      # Global error handler
 │       └── validation.js        # Input validation
 ├── public/
-│   └── assets/                  # Uploaded images
+│   └── assets/                  # Uploaded images & avatars
 ├── server.js                    # Application entry point
 ├── package.json
 ├── .env
@@ -184,6 +189,94 @@ GET /api/products?category=Electronics&isActive=true
 }
 ```
 
+## 👥 Customer API Endpoints
+
+### Base URL: `http://localhost:8998/api`
+
+| Method | Endpoint | Description | Body/Query |
+|--------|----------|-------------|------------|
+| `GET` | `/customers` | Get all customers | Query: `isActive`, `search` |
+| `GET` | `/customers/:id` | Get customer by ID | - |
+| `POST` | `/customers` | Create new customer | Form-data (see below) |
+| `PUT` | `/customers/:id` | Update customer | Form-data (see below) |
+| `DELETE` | `/customers/:id` | Delete customer (soft) | - |
+
+### Customer Model
+
+```json
+{
+  "id": "uuid",
+  "fullName": "string (required, max 255)",
+  "email": "string (required, unique, valid email)",
+  "phone": "string (optional, max 20)",
+  "address": "text (optional)",
+  "avatarUrl": "string (optional)",
+  "isActive": "boolean (default: true)",
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp"
+}
+```
+
+### Example: Create Customer (POST `/api/customers`)
+
+**Request (multipart/form-data):**
+
+```
+fullName: "John Doe"
+email: "john.doe@example.com"
+phone: "+1234567890"
+address: "123 Main St, New York, NY 10001"
+avatar: [file upload]
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "message": "Customer created successfully",
+  "data": {
+    "id": "660e8400-e29b-41d4-a716-446655440000",
+    "fullName": "John Doe",
+    "email": "john.doe@example.com",
+    "phone": "+1234567890",
+    "address": "123 Main St, New York, NY 10001",
+    "avatarUrl": "/assets/avatar-1705561234567-123456789.jpg",
+    "isActive": true,
+    "createdAt": "2026-01-18T04:07:00.000Z",
+    "updatedAt": "2026-01-18T04:07:00.000Z"
+  }
+}
+```
+
+### Example: Get All Customers (GET `/api/customers`)
+
+**Request:**
+
+```
+GET /api/customers?isActive=true&search=john
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "count": 1,
+  "data": [
+    {
+      "id": "660e8400-e29b-41d4-a716-446655440000",
+      "fullName": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "+1234567890",
+      "address": "123 Main St, New York, NY 10001",
+      "avatarUrl": "/assets/avatar-1705561234567-123456789.jpg",
+      "isActive": true
+    }
+  ]
+}
+```
+
 ## 🖼️ Accessing Uploaded Images
 
 Images are served statically from `http://localhost:8998/assets/filename.jpg`
@@ -203,17 +296,27 @@ Example: `http://localhost:8998/assets/laptop-1705561234567-123456789.jpg`
 
 ## 🧪 Testing with Postman/Thunder Client
 
+### Product Endpoints
 1. **Create Product**: POST to `/api/products` with `multipart/form-data`
 2. **Get All Products**: GET to `/api/products`
 3. **Get Product by ID**: GET to `/api/products/{id}`
 4. **Update Product**: PUT to `/api/products/{id}` with `multipart/form-data`
 5. **Delete Product**: DELETE to `/api/products/{id}`
 
+### Customer Endpoints
+1. **Create Customer**: POST to `/api/customers` with `multipart/form-data`
+2. **Get All Customers**: GET to `/api/customers`
+3. **Get Customer by ID**: GET to `/api/customers/{id}`
+4. **Update Customer**: PUT to `/api/customers/{id}` with `multipart/form-data`
+5. **Delete Customer**: DELETE to `/api/customers/{id}`
+
 ## 📝 Notes
 
 - **Auto-sync Database**: The application automatically creates/updates database tables on startup
 - **Soft Delete**: DELETE endpoint sets `isActive = false` instead of removing records
 - **Image Upload**: Maximum file size is 5MB, accepts: jpg, jpeg, png, gif, webp
+- **Email Uniqueness**: Customer email addresses must be unique across the system
+- **Search Functionality**: Customer search works on both `fullName` and `email` fields
 - **CORS**: Enabled for all origins (configure in production)
 
 ## 🔄 Development Workflow

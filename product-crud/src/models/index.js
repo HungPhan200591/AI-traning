@@ -1,9 +1,11 @@
 const sequelize = require('../config/database');
 const Product = require('./Product');
+const Customer = require('./Customer');
 
 const db = {
   sequelize,
-  Product
+  Product,
+  Customer
 };
 
 module.exports = db;

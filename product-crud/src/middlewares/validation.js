@@ -48,6 +48,48 @@ const validateProduct = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  validateProduct
+/**
+ * Validation middleware for customer creation/update
+ */
+const validateCustomer = (req, res, next) => {
+  const errors = [];
+
+  // Validate fullName
+  if (!req.body.fullName || req.body.fullName.trim() === '') {
+    errors.push('Full name is required');
+  } else if (req.body.fullName.length > 255) {
+    errors.push('Full name must not exceed 255 characters');
+  }
+
+  // Validate email
+  if (!req.body.email || req.body.email.trim() === '') {
+    errors.push('Email is required');
+  } else {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(req.body.email)) {
+      errors.push('Must be a valid email address');
+    }
+  }
+
+  // Validate phone (optional)
+  if (req.body.phone && req.body.phone.length > 20) {
+    errors.push('Phone number must not exceed 20 characters');
+  }
+
+  // If there are validation errors, return 400
+  if (errors.length > 0) {
+    return res.status(400).json({
+      success: false,
+      message: 'Validation failed',
+      errors: errors
+    });
+  }
+
+  next();
 };
+
+module.exports = {
+  validateProduct,
+  validateCustomer
+};
+

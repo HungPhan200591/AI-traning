@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Management System</title>
+    <title>Management System - Products & Customers</title>
 
     <!-- Bootstrap 5.3.2 CSS -->
     <link
@@ -52,289 +52,76 @@
       </div>
     </div>
 
-    <!-- Header -->
-    <header class="header-gradient">
-      <div class="container py-4">
-        <div class="row align-items-center mb-4">
-          <div class="col">
-            <h1 class="text-white mb-0">
-              <i class="bi bi-box-seam me-2"></i>
-              Product Management
-            </h1>
-            <p class="text-white-50 mb-0">Manage your inventory efficiently</p>
-          </div>
-          <div class="col-auto">
-            <button class="btn btn-light btn-lg" onclick="openAddModal()">
-              <i class="bi bi-plus-circle me-2"></i>
-              Add New Product
-            </button>
-          </div>
-        </div>
-
-        <!-- Statistics Cards -->
-        <div class="row g-3">
-          <div class="col-md-3">
-            <div class="stat-card">
-              <div class="stat-icon bg-primary">
-                <i class="bi bi-box"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-label">Total Products</div>
-                <div class="stat-value" id="totalProducts">0</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-card">
-              <div class="stat-icon bg-success">
-                <i class="bi bi-check-circle"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-label">Active Products</div>
-                <div class="stat-value" id="activeProducts">0</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-card">
-              <div class="stat-icon bg-warning">
-                <i class="bi bi-box-seam"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-label">Total Stock</div>
-                <div class="stat-value" id="totalStock">0</div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-card">
-              <div class="stat-icon bg-info">
-                <i class="bi bi-currency-dollar"></i>
-              </div>
-              <div class="stat-content">
-                <div class="stat-label">Total Value</div>
-                <div class="stat-value" id="totalValue">$0</div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h4 class="mb-0">
+          <i class="bi bi-grid-3x3-gap-fill me-2"></i>
+          Management
+        </h4>
+        <button class="sidebar-toggle d-lg-none" onclick="toggleSidebar()">
+          <i class="bi bi-x-lg"></i>
+        </button>
       </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="container my-5">
-      <div class="card shadow-sm">
-        <div class="card-header bg-white py-3">
-          <div class="row align-items-center">
-            <div class="col">
-              <h5 class="mb-0">Product List</h5>
-            </div>
-            <div class="col-auto">
-              <div class="input-group">
-                <span class="input-group-text bg-white border-end-0">
-                  <i class="bi bi-search"></i>
-                </span>
-                <input
-                  type="text"
-                  class="form-control border-start-0"
-                  placeholder="Search products..."
-                  id="searchInput"
-                  onkeyup="handleSearch()"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <div class="table-responsive">
-            <table class="table table-hover mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th width="80">Image</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th width="120">Price</th>
-                  <th width="100">Stock</th>
-                  <th width="100">Status</th>
-                  <th width="150" class="text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="productTableBody">
-                <tr>
-                  <td colspan="7" class="text-center py-5 text-muted">
-                    <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                    No products found. Click "Add New Product" to get started.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </main>
+      <nav class="sidebar-nav">
+        <a
+          href="#"
+          class="nav-item"
+          data-page="dashboard"
+          onclick="navigateTo('dashboard')"
+        >
+          <i class="bi bi-house-door"></i>
+          <span>Dashboard</span>
+        </a>
+        <a
+          href="#"
+          class="nav-item active"
+          data-page="products"
+          onclick="navigateTo('products')"
+        >
+          <i class="bi bi-box-seam"></i>
+          <span>Product Management</span>
+        </a>
+        <a
+          href="#"
+          class="nav-item"
+          data-page="customers"
+          onclick="navigateTo('customers')"
+        >
+          <i class="bi bi-people"></i>
+          <span>Customer Management</span>
+        </a>
+      </nav>
 
-    <!-- Modal: Add/Edit Product -->
-    <div
-      class="modal fade"
-      id="productModal"
-      tabindex="-1"
-      aria-labelledby="productModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title" id="productModalLabel">
-              <i class="bi bi-plus-circle me-2"></i>
-              Add New Product
-            </h5>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form id="productForm">
-              <input type="hidden" id="productId" />
-
-              <div class="row g-3">
-                <div class="col-md-8">
-                  <div class="mb-3">
-                    <label for="productName" class="form-label"
-                      >Product Name <span class="text-danger">*</span></label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="productName"
-                      required
-                    />
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="productDescription" class="form-label"
-                      >Description</label
-                    >
-                    <textarea
-                      class="form-control"
-                      id="productDescription"
-                      rows="3"
-                    ></textarea>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="productPrice" class="form-label"
-                        >Price ($) <span class="text-danger">*</span></label
-                      >
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="productPrice"
-                        step="0.01"
-                        min="0"
-                        required
-                      />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="productStock" class="form-label"
-                        >Stock <span class="text-danger">*</span></label
-                      >
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="productStock"
-                        min="0"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <label for="productCategory" class="form-label"
-                      >Category</label
-                    >
-                    <select class="form-select" id="productCategory">
-                      <option value="">Select category...</option>
-                      <option value="Electronics">Electronics</option>
-                      <option value="Fashion">Fashion</option>
-                      <option value="Home & Garden">Home & Garden</option>
-                      <option value="Sports">Sports</option>
-                      <option value="Books">Books</option>
-                      <option value="Toys">Toys</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <label class="form-label">Product Image</label>
-                  <div class="image-upload-container">
-                    <div class="image-preview" id="imagePreview">
-                      <i class="bi bi-image"></i>
-                      <p>No image selected</p>
-                    </div>
-                    <input
-                      type="file"
-                      class="form-control mt-2"
-                      id="productImage"
-                      accept="image/*"
-                      onchange="previewImage(event)"
-                    />
-                    <small class="text-muted d-block mt-1"
-                      >Max 5MB (jpg, png, gif, webp)</small
-                    >
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              onclick="saveProduct()"
-            >
-              <i class="bi bi-save me-2"></i>
-              Save Product
-            </button>
-          </div>
+      <div class="sidebar-footer">
+        <div class="text-white-50 small">
+          <i class="bi bi-info-circle me-1"></i>
+          Version 1.0.0
         </div>
       </div>
     </div>
 
-    <!-- Offcanvas: Product Detail -->
+    <!-- Mobile Sidebar Overlay -->
     <div
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-      id="productDetailOffcanvas"
-      aria-labelledby="productDetailLabel"
-    >
-      <div class="offcanvas-header bg-primary text-white">
-        <h5 class="offcanvas-title" id="productDetailLabel">
-          <i class="bi bi-info-circle me-2"></i>
-          Product Details
-        </h5>
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
+      class="sidebar-overlay"
+      id="sidebarOverlay"
+      onclick="toggleSidebar()"
+    ></div>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+      <!-- Mobile Header with Hamburger -->
+      <div class="mobile-header d-lg-none">
+        <button class="hamburger-btn" onclick="toggleSidebar()">
+          <i class="bi bi-list"></i>
+        </button>
+        <h5 class="mb-0">Management System</h5>
       </div>
-      <div class="offcanvas-body">
-        <div id="productDetailContent">
-          <!-- Content will be dynamically loaded -->
-        </div>
+
+      <!-- Dynamic Content Area -->
+      <div id="mainContent">
+        <!-- Content will be loaded dynamically -->
       </div>
     </div>
 
@@ -343,5 +130,7 @@
 
     <!-- Custom JS -->
     <script src="/js/app.js"></script>
+    <script src="/js/products.js"></script>
+    <script src="/js/customers.js"></script>
   </body>
 </html>

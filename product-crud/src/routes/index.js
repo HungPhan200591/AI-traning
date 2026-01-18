@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const productRoutes = require('./productRoutes');
+const customerRoutes = require('./customerRoutes');
 
 // Mount product routes
 router.use('/products', productRoutes);
+
+// Mount customer routes
+router.use('/customers', customerRoutes);
 
 // Health check endpoint
 router.get('/health', (req, res) => {
@@ -15,3 +19,4 @@ router.get('/health', (req, res) => {
 });
 
 module.exports = router;
+
